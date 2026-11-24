@@ -1,0 +1,2011 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Karya & Toko Nama Kamu — Official Store & Portfolio</title>
+  <meta name="description" content="Portofolio karya dan toko resmi pribadi. Produk pilihan berkualitas dan layanan jasa custom siap pesan." />
+
+  <style>
+    /* ==========================================================================
+       1. DESIGN TOKENS & VARIABEL WARNA (ZINC DARK + AMBER GOLD + EMERALD WA)
+       ========================================================================== */
+    :root {
+      --bg-primary: #09090b;
+      --bg-secondary: #111114;
+      --bg-card: #16161a;
+      --bg-card-hover: #1d1d22;
+      --bg-input: #0e0e11;
+
+      --border-subtle: #27272a;
+      --border-strong: #3f3f46;
+      --border-gold: rgba(245, 158, 11, 0.35);
+
+      --text-primary: #fafafa;
+      --text-secondary: #a1a1aa;
+      --text-muted: #71717a;
+
+      --gold-primary: #f59e0b;
+      --gold-light: #fbbf24;
+      --gold-soft: rgba(245, 158, 11, 0.14);
+      --gold-glow: rgba(245, 158, 11, 0.22);
+
+      --wa-primary: #10b981;
+      --wa-hover: #059669;
+      --wa-soft: rgba(16, 185, 129, 0.14);
+      --wa-glow: rgba(16, 185, 129, 0.28);
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-full: 9999px;
+
+      --container-max: 1140px;
+      --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ==========================================================================
+       2. RESET & TIPOGRAFI DASAR
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      background-image:
+        radial-gradient(circle at 50% -10%, rgba(245, 158, 11, 0.09), transparent 48%),
+        radial-gradient(circle at 85% 25%, rgba(16, 185, 129, 0.04), transparent 35%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* ==========================================================================
+       3. NAVBAR RESPONSIF
+       ========================================================================== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(9, 9, 11, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .navbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 4.5rem;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-width: 0;
+    }
+
+    .brand-avatar {
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--gold-primary), #b45309);
+      color: #09090b;
+      font-weight: 800;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 14px var(--gold-glow);
+      letter-spacing: -0.5px;
+    }
+
+    .brand-info {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .brand-title {
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: -0.3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-subtitle {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+    }
+
+    .nav-link {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color var(--transition-fast);
+      padding: 0.35rem 0;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold-primary);
+      transition: width var(--transition-fast);
+      border-radius: 2px;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .btn-wa-sm {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--wa-primary);
+      color: #042f1e;
+      font-weight: 700;
+      font-size: 0.875rem;
+      padding: 0.55rem 1rem;
+      border-radius: var(--radius-full);
+      transition: all var(--transition-fast);
+      box-shadow: 0 4px 14px var(--wa-glow);
+    }
+
+    .btn-wa-sm:hover {
+      background: var(--wa-hover);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      align-items: center;
+      justify-content: center;
+      color: var(--text-primary);
+    }
+
+    .mobile-drawer {
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 1rem 1.25rem 1.25rem;
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-secondary);
+    }
+
+    .mobile-drawer.open {
+      display: flex;
+    }
+
+    .mobile-drawer a {
+      padding: 0.65rem 0.75rem;
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      font-weight: 500;
+      transition: background var(--transition-fast), color var(--transition-fast);
+    }
+
+    .mobile-drawer a:hover {
+      background: var(--bg-card);
+      color: var(--text-primary);
+    }
+
+    /* ==========================================================================
+       4. HERO SECTION PORTOFOLIO TOKO
+       ========================================================================== */
+    .hero {
+      padding: 4.5rem 0 4rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border-radius: var(--radius-full);
+      background: var(--gold-soft);
+      border: 1px solid var(--border-gold);
+      color: var(--gold-light);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold-primary);
+      box-shadow: 0 0 8px var(--gold-primary);
+    }
+
+    .hero-title {
+      font-size: clamp(2.15rem, 5.2vw, 3.65rem);
+      font-weight: 800;
+      line-height: 1.13;
+      letter-spacing: -1.2px;
+      margin-bottom: 1.25rem;
+      color: var(--text-primary);
+    }
+
+    .hero-title-highlight {
+      background: linear-gradient(135deg, #fde68a 0%, #f59e0b 55%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-desc {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--text-secondary);
+      max-width: 620px;
+      margin: 0 auto 2.25rem;
+      line-height: 1.7;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .btn-primary-gold {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
+      color: #09090b;
+      font-weight: 700;
+      font-size: 0.96rem;
+      transition: all var(--transition-fast);
+      box-shadow: 0 6px 22px var(--gold-glow);
+    }
+
+    .btn-primary-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(245, 158, 11, 0.35);
+    }
+
+    .btn-whatsapp-hero {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: var(--radius-md);
+      background: var(--wa-primary);
+      color: #042f1e;
+      font-weight: 700;
+      font-size: 0.96rem;
+      transition: all var(--transition-fast);
+      box-shadow: 0 6px 22px var(--wa-glow);
+    }
+
+    .btn-whatsapp-hero:hover {
+      background: var(--wa-hover);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    .hero-trust-bar {
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem 2rem;
+      padding: 0.9rem 1.5rem;
+      border-radius: var(--radius-lg);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .trust-item svg {
+      color: var(--gold-primary);
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================================
+       5. SECTION HEADER & KATALOG PRODUK / PORTOFOLIO INTERAKTIF
+       ========================================================================== */
+    .section {
+      padding: 4.5rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 620px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      color: var(--gold-primary);
+      margin-bottom: 0.55rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.65rem, 3.5vw, 2.3rem);
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      margin-bottom: 0.65rem;
+    }
+
+    .section-subtitle {
+      color: var(--text-secondary);
+      font-size: 0.98rem;
+    }
+
+    /* Filter Bar */
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .filter-btn {
+      padding: 0.55rem 1.15rem;
+      border-radius: var(--radius-full);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      transition: all var(--transition-fast);
+    }
+
+    .filter-btn:hover {
+      color: var(--text-primary);
+      border-color: var(--border-strong);
+    }
+
+    .filter-btn.active {
+      background: var(--gold-soft);
+      color: var(--gold-light);
+      border-color: var(--border-gold);
+      box-shadow: 0 2px 12px rgba(245, 158, 11, 0.12);
+    }
+
+    /* Product Grid */
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+      animation: cardFadeIn 0.35s ease forwards;
+    }
+
+    @keyframes cardFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-gold);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+    }
+
+    .product-visual {
+      height: 185px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .product-visual-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.16;
+      background-image: radial-gradient(#ffffff 1px, transparent 1px);
+      background-size: 16px 16px;
+    }
+
+    .product-icon-wrap {
+      position: relative;
+      z-index: 2;
+      width: 4.5rem;
+      height: 4.5rem;
+      border-radius: var(--radius-lg);
+      background: rgba(9, 9, 11, 0.45);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      transition: transform var(--transition-smooth);
+    }
+
+    .product-card:hover .product-icon-wrap {
+      transform: scale(1.08);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 0.9rem;
+      left: 0.9rem;
+      z-index: 3;
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-full);
+      background: rgba(9, 9, 11, 0.75);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--gold-light);
+    }
+
+    .product-body {
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .product-title {
+      font-size: 1.12rem;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      margin-bottom: 0.45rem;
+      color: var(--text-primary);
+    }
+
+    .product-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.25rem;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .product-price-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 1.1rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .price-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .product-price {
+      font-size: 1.18rem;
+      font-weight: 800;
+      color: var(--gold-light);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .product-actions {
+      display: grid;
+      grid-template-columns: 1fr 1.45fr;
+      gap: 0.6rem;
+    }
+
+    .btn-detail {
+      padding: 0.65rem 0.85rem;
+      border-radius: var(--radius-sm);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      font-size: 0.86rem;
+      font-weight: 600;
+      text-align: center;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-detail:hover {
+      border-color: var(--border-strong);
+      background: var(--bg-card-hover);
+    }
+
+    .btn-order-wa {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.65rem 0.9rem;
+      border-radius: var(--radius-sm);
+      background: var(--wa-primary);
+      color: #042f1e;
+      font-size: 0.86rem;
+      font-weight: 700;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-order-wa:hover {
+      background: var(--wa-hover);
+      color: #ffffff;
+    }
+
+    /* ==========================================================================
+       6. TENTANG PEMILIK & 3 KEUNGGULAN
+       ========================================================================== */
+    .about-section {
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      background: linear-gradient(180deg, rgba(24, 24, 27, 0.35) 0%, rgba(9, 9, 11, 0.9) 100%);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 900px) {
+      .about-grid {
+        grid-template-columns: 1.05fr 1.25fr;
+        align-items: center;
+        gap: 2.75rem;
+      }
+    }
+
+    .owner-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .owner-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-primary), var(--wa-primary));
+    }
+
+    .owner-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .owner-portrait {
+      width: 4rem;
+      height: 4rem;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, #27272a, #18181b);
+      border: 1px solid var(--border-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-light);
+      flex-shrink: 0;
+    }
+
+    .owner-name {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+
+    .owner-location {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.83rem;
+      color: var(--gold-light);
+      margin-top: 0.2rem;
+    }
+
+    .owner-bio {
+      color: var(--text-secondary);
+      font-size: 0.96rem;
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+
+    .pillars-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .pillar-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.35rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: border-color var(--transition-fast);
+    }
+
+    .pillar-card:hover {
+      border-color: var(--border-gold);
+    }
+
+    .pillar-icon {
+      width: 2.65rem;
+      height: 2.65rem;
+      border-radius: var(--radius-sm);
+      background: var(--gold-soft);
+      border: 1px solid var(--border-gold);
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .pillar-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .pillar-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+
+    /* ==========================================================================
+       7. CONTACT CTA & FOOTER
+       ========================================================================== */
+    .contact-banner {
+      background: linear-gradient(135deg, #18181b 0%, #121215 100%);
+      border: 1px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      padding: 2.75rem 1.75rem;
+      text-align: center;
+      margin: 4rem auto 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-banner h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 0.65rem;
+    }
+
+    .contact-banner p {
+      color: var(--text-secondary);
+      max-width: 540px;
+      margin: 0 auto 1.75rem;
+      font-size: 0.96rem;
+    }
+
+    .footer {
+      margin-top: 4rem;
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-secondary);
+      padding: 2.5rem 0 5.5rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .footer-inner {
+        flex-direction: row;
+        text-align: left;
+      }
+      .footer {
+        padding-bottom: 2.75rem;
+      }
+    }
+
+    .footer-copy {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-socials {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.5rem 0.95rem;
+      border-radius: var(--radius-full);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: all var(--transition-fast);
+    }
+
+    .social-link:hover {
+      color: var(--text-primary);
+      border-color: var(--gold-primary);
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================================
+       8. TOMBOL MELAYANG LIVE CUSTOMIZER & MODAL
+       ========================================================================== */
+    .floating-customizer-btn {
+      position: fixed;
+      bottom: 1.25rem;
+      left: 1.25rem;
+      z-index: 45;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.05rem;
+      border-radius: var(--radius-full);
+      background: rgba(24, 24, 27, 0.92);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-gold);
+      color: var(--gold-light);
+      font-size: 0.83rem;
+      font-weight: 700;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
+      transition: all var(--transition-fast);
+    }
+
+    .floating-customizer-btn:hover {
+      background: #27272a;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(245, 158, 11, 0.25);
+    }
+
+    /* Modal Backdrop & Dialog */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 1.65rem;
+      position: relative;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.65);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .modal-title {
+      font-size: 1.22rem;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+
+    .modal-close {
+      width: 2rem;
+      height: 2rem;
+      border-radius: var(--radius-sm);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .modal-close:hover {
+      color: var(--text-primary);
+      border-color: var(--border-strong);
+    }
+
+    /* Form Controls inside Customizer Modal */
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 0.35rem;
+    }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      border-radius: var(--radius-sm);
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.92rem;
+      transition: border-color var(--transition-fast);
+    }
+
+    .form-input:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--gold-primary);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 76px;
+    }
+
+    .modal-footer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.35rem;
+    }
+
+    .btn-copy-config {
+      flex: 1;
+      padding: 0.7rem 1rem;
+      border-radius: var(--radius-sm);
+      background: var(--gold-primary);
+      color: #09090b;
+      font-weight: 700;
+      font-size: 0.86rem;
+      text-align: center;
+    }
+
+    .btn-copy-config:hover {
+      background: var(--gold-light);
+    }
+
+    .btn-reset-config {
+      padding: 0.7rem 1rem;
+      border-radius: var(--radius-sm);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      font-weight: 600;
+      font-size: 0.86rem;
+    }
+
+    .btn-reset-config:hover {
+      color: var(--text-primary);
+      border-color: var(--border-strong);
+    }
+
+    /* Product Detail Modal Content */
+    .detail-visual {
+      height: 150px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .detail-meta-list {
+      list-style: none;
+      margin: 1rem 0 1.4rem;
+      padding: 0.9rem 1rem;
+      border-radius: var(--radius-md);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+      font-size: 0.88rem;
+    }
+
+    .detail-meta-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      color: var(--text-secondary);
+    }
+
+    .detail-meta-list li svg {
+      color: var(--gold-primary);
+      flex-shrink: 0;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 1.25rem;
+      right: 1.25rem;
+      z-index: 80;
+      background: #18181b;
+      border: 1px solid var(--wa-primary);
+      color: var(--text-primary);
+      padding: 0.8rem 1.15rem;
+      border-radius: var(--radius-md);
+      font-size: 0.87rem;
+      font-weight: 600;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55);
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: all 0.28s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .mobile-menu-btn {
+        display: inline-flex;
+      }
+      .hero {
+        padding: 3.25rem 0 3rem;
+      }
+      .product-actions {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       NAVBAR RESPONSIF
+       ======================================================================== -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="#beranda" class="brand" aria-label="Beranda Toko">
+        <div class="brand-avatar" id="navAvatar">NK</div>
+        <div class="brand-info">
+          <span class="brand-title" id="navStoreName">Karya &amp; Toko Nama Kamu</span>
+          <span class="brand-subtitle" id="navOwnerName">Oleh Nama Kamu</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="Navigasi Utama">
+        <a href="#beranda" class="nav-link">Beranda</a>
+        <a href="#katalog" class="nav-link">Katalog</a>
+        <a href="#tentang" class="nav-link">Tentang</a>
+        <a href="#kontak" class="nav-link">Kontak</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#" id="navWaBtn" target="_blank" rel="noopener noreferrer" class="btn-wa-sm">
+          <!-- Ikon WhatsApp SVG -->
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/>
+          </svg>
+          <span>Chat WA</span>
+        </a>
+
+        <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Buka Menu Navigasi" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menu Mobile -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <a href="#beranda" class="mobile-nav-link">Beranda</a>
+      <a href="#katalog" class="mobile-nav-link">Katalog Produk &amp; Jasa</a>
+      <a href="#tentang" class="mobile-nav-link">Tentang Pemilik</a>
+      <a href="#kontak" class="mobile-nav-link">Kontak &amp; Sosial Media</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ======================================================================
+         HERO SECTION PORTOFOLIO TOKO
+         ====================================================================== -->
+    <section id="beranda" class="hero">
+      <div class="container hero-inner">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          <span>Official Store &amp; Portfolio</span>
+        </div>
+
+        <h1 class="hero-title">
+          Karya Pilihan &amp; Toko Resmi <br />
+          <span class="hero-title-highlight" id="heroOwnerName">Nama Kamu</span>
+        </h1>
+
+        <p class="hero-desc" id="heroDescription">
+          Menghadirkan karya kreatif, produk pilihan berkualitas tinggi, serta layanan custom yang dikerjakan langsung dengan ketelitian dan standar terbaik.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#katalog" class="btn-primary-gold">
+            <span>Jelajahi Katalog</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+
+          <a href="#" id="heroWaBtn" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-hero">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/>
+            </svg>
+            <span>Chat WhatsApp</span>
+          </a>
+        </div>
+
+        <div class="hero-trust-bar">
+          <div class="trust-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>100% Kurasi Pribadi</span>
+          </div>
+          <div class="trust-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Bisa Request Custom</span>
+          </div>
+          <div class="trust-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Respon Cepat via WA</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         KATALOG PRODUK & PORTOFOLIO INTERAKTIF
+         ====================================================================== -->
+    <section id="katalog" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Etalase &amp; Portofolio</span>
+          <h2 class="section-title">Katalog Produk &amp; Layanan</h2>
+          <p class="section-subtitle">
+            Pilih produk siap kirim atau konsultasikan pesanan custom sesuai kebutuhan Anda langsung melalui WhatsApp.
+          </p>
+        </div>
+
+        <!-- Filter Kategori -->
+        <div class="filter-bar" role="tablist" aria-label="Filter Kategori Produk">
+          <button type="button" class="filter-btn active" data-category="Semua">Semua</button>
+          <button type="button" class="filter-btn" data-category="Produk Unggulan">Produk Unggulan</button>
+          <button type="button" class="filter-btn" data-category="Jasa / Custom">Jasa / Custom</button>
+          <button type="button" class="filter-btn" data-category="Terlaris">Terlaris</button>
+        </div>
+
+        <!-- Grid Kartu Produk -->
+        <div class="catalog-grid" id="catalogGrid"></div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TENTANG PEMILIK & 3 KEUNGGULAN
+         ====================================================================== -->
+    <section id="tentang" class="section about-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Profil &amp; Komitmen</span>
+          <h2 class="section-title">Tentang Pemilik &amp; Keunggulan</h2>
+          <p class="section-subtitle">
+            Setiap produk dan karya yang ditampilkan di sini merupakan hasil kurasi dan pengerjaan penuh dedikasi.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <!-- Kartu Profil Pemilik -->
+          <div class="owner-card">
+            <div class="owner-header">
+              <div class="owner-portrait" aria-hidden="true">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <div>
+                <h3 class="owner-name" id="aboutOwnerName">Nama Kamu</h3>
+                <div class="owner-location">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  <span id="aboutCity">Medan, Indonesia</span>
+                </div>
+              </div>
+            </div>
+
+            <p class="owner-bio" id="aboutBio">
+              Halo! Saya Nama Kamu. Berawal dari kecintaan terhadap detail desain dan kualitas pengerjaan yang rapi, saya membangun toko sekaligus portofolio pribadi ini untuk menghadirkan produk pilihan dan layanan custom yang terpercaya.
+            </p>
+
+            <a href="#" id="aboutWaBtn" target="_blank" rel="noopener noreferrer" class="btn-wa-sm">
+              <span>Tanya Langsung ke Pemilik</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          </div>
+
+          <!-- 3 Poin Keunggulan -->
+          <div class="pillars-list">
+            <div class="pillar-card">
+              <div class="pillar-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+              </div>
+              <div>
+                <h4 class="pillar-title">Kualitas Terkurasi</h4>
+                <p class="pillar-desc">
+                  Seluruh material, komponen, dan hasil akhir diperiksa secara ketat agar Anda mendapatkan kualitas terbaik tanpa kompromi.
+                </p>
+              </div>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 20h9"></path>
+                  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="pillar-title">Bisa Request Custom</h4>
+                <p class="pillar-desc">
+                  Membutuhkan penyesuaian konsep, ukuran, warna, atau fitur khusus? Diskusikan ide Anda dan kami wujudkan sesuai keinginan.
+                </p>
+              </div>
+            </div>
+
+            <div class="pillar-card">
+              <div class="pillar-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+              </div>
+              <div>
+                <h4 class="pillar-title">Pengiriman &amp; Layanan Cepat</h4>
+                <p class="pillar-desc">
+                  Komunikasi responsif langsung dengan pemilik, estimasi waktu pengerjaan jelas, serta pengemasan aman hingga sampai tujuan.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Banner Kontak -->
+        <div id="kontak" class="contact-banner">
+          <h2>Siap Memesan atau Diskusi Proyek Custom?</h2>
+          <p>
+            Klik tombol di bawah untuk terhubung langsung ke WhatsApp resmi <strong id="contactStoreName">Karya &amp; Toko Nama Kamu</strong>. Konsultasi gratis tanpa ribet!
+          </p>
+          <a href="#" id="contactWaBtn" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-hero">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/>
+            </svg>
+            <span>Hubungi via WhatsApp Sekarang</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       FOOTER LENGKAP
+       ======================================================================== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-copy" id="footerCopyright">
+        &copy; 2026 Nama Kamu — Karya &amp; Toko Nama Kamu. Hak Cipta Dilindungi.
+      </div>
+
+      <div class="footer-socials" aria-label="Tautan Media Sosial">
+        <a href="https://instagram.com/" id="socialInstagram" target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+          <span>Instagram</span>
+        </a>
+
+        <a href="#" id="socialWhatsapp" target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/>
+          </svg>
+          <span>WhatsApp</span>
+        </a>
+
+        <a href="https://tiktok.com/" id="socialTiktok" target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+          </svg>
+          <span>TikTok</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       TOMBOL MELAYANG LIVE CUSTOMIZER ('ATUR NAMA & TOKO')
+       ======================================================================== -->
+  <button type="button" class="floating-customizer-btn" id="openCustomizerBtn" aria-label="Atur Nama dan Toko Secara Langsung">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 20h9"></path>
+      <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+    </svg>
+    <span>Atur Nama &amp; Toko</span>
+  </button>
+
+  <!-- ========================================================================
+       MODAL 1: LIVE CUSTOMIZER (UBAH IDENTITAS TOKO REAL-TIME)
+       ======================================================================== -->
+  <div class="modal-backdrop" id="customizerModal" role="dialog" aria-modal="true" aria-labelledby="customizerModalTitle">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title" id="customizerModalTitle">Atur Nama &amp; Toko (Live Preview)</h3>
+          <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.2rem;">
+            Ketik data Anda di bawah untuk langsung melihat perubahan tampilan secara real-time.
+          </p>
+        </div>
+        <button type="button" class="modal-close" id="closeCustomizerBtn" aria-label="Tutup Customizer">✕</button>
+      </div>
+
+      <form id="customizerForm" onsubmit="return false;">
+        <div class="form-group">
+          <label class="form-label" for="inputOwnerName">Nama Pemilik</label>
+          <input type="text" id="inputOwnerName" class="form-input" placeholder="Contoh: Budi Santoso" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="inputStoreName">Nama Toko / Brand</label>
+          <input type="text" id="inputStoreName" class="form-input" placeholder="Contoh: Karya &amp; Toko Budi Santoso" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="inputCity">Kota Domisili</label>
+          <input type="text" id="inputCity" class="form-input" placeholder="Contoh: Medan, Indonesia" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="inputWhatsapp">Nomor WhatsApp (awalan 62 tanpa +)</label>
+          <input type="text" id="inputWhatsapp" class="form-input" placeholder="6281234567890" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="inputBio">Bio Singkat Pemilik</label>
+          <textarea id="inputBio" class="form-textarea" placeholder="Ceritakan singkat tentang diri dan kualitas produk Anda..."></textarea>
+        </div>
+
+        <div class="modal-footer-actions">
+          <button type="button" class="btn-copy-config" id="copyConfigBtn">
+            Salin Konfigurasi untuk GitHub
+          </button>
+          <button type="button" class="btn-reset-config" id="resetConfigBtn">
+            Reset Default
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 2: DETAIL PRODUK & PORTOFOLIO
+       ======================================================================== -->
+  <div class="modal-backdrop" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="detailModalTitle">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div>
+          <span class="section-eyebrow" id="detailCategory" style="margin-bottom: 0.2rem;">Kategori</span>
+          <h3 class="modal-title" id="detailModalTitle">Nama Produk</h3>
+        </div>
+        <button type="button" class="modal-close" id="closeDetailBtn" aria-label="Tutup Detail Produk">✕</button>
+      </div>
+
+      <div class="detail-visual" id="detailVisual">
+        <div class="product-visual-pattern"></div>
+        <div class="product-icon-wrap" id="detailIconWrap"></div>
+      </div>
+
+      <p id="detailFullDesc" style="color: var(--text-secondary); font-size: 0.94rem; line-height: 1.7;"></p>
+
+      <ul class="detail-meta-list" id="detailSpecsList"></ul>
+
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+        <div>
+          <div class="price-label">Harga Penawaran</div>
+          <div class="product-price" id="detailPrice" style="font-size: 1.35rem;">Rp 0</div>
+        </div>
+
+        <a href="#" id="detailOrderWaBtn" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-hero" style="padding: 0.75rem 1.35rem; font-size: 0.92rem;">
+          <span>Pesan via WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notifikasi -->
+  <div class="toast" id="toastBox" role="status" aria-live="polite"></div>
+
+  <!-- ========================================================================
+       SCRIPT KONFIGURASI & LOGIKA INTERAKTIF
+       ======================================================================== -->
+  <script>
+    /**
+     * ========================================================================
+     * KONFIGURASI TOKO & PORTOFOLIO PRIBADI (EDIT BAGIAN INI SEBELUM COMMIT)
+     * ========================================================================
+     * Ubah data di dalam objek STORE_CONFIG di bawah sesuai identitas dan
+     * daftar produk/jasa Anda sebelum mengunggah (commit) ke GitHub & Vercel.
+     */
+    const STORE_CONFIG = {
+      ownerName: "Nama Kamu",
+      storeName: "Karya & Toko Nama Kamu",
+      city: "Medan, Indonesia",
+      whatsappNumber: "6281234567890", // Format internasional tanpa tanda '+' atau spasi
+      heroDescription:
+        "Menghadirkan karya kreatif, produk pilihan berkualitas tinggi, serta layanan custom yang dikerjakan langsung dengan ketelitian dan standar terbaik.",
+      aboutBio:
+        "Halo! Saya Nama Kamu. Berawal dari kecintaan terhadap detail desain dan kualitas pengerjaan yang rapi, saya membangun toko sekaligus portofolio pribadi ini untuk menghadirkan produk pilihan dan layanan custom yang terpercaya.",
+      socials: {
+        instagram: "https://instagram.com/",
+        tiktok: "https://tiktok.com/"
+      },
+      products: [
+        {
+          id: "prod-1",
+          name: "Paket Desain Identitas Brand & Logo",
+          category: "Jasa / Custom",
+          tags: ["Jasa / Custom", "Terlaris"],
+          price: 650000,
+          shortDesc: "Pembuatan logo profesional, palet warna, tipografi, dan panduan visual lengkap untuk UMKM maupun personal brand.",
+          fullDesc: "Layanan perancangan identitas visual menyeluruh dari nol hingga siap cetak dan publikasi digital. Anda akan mendapatkan 3 konsep awal, revisi fleksibel, serta file master beresolusi tinggi.",
+          specs: [
+            "Estimasi pengerjaan: 3–5 hari kerja",
+            "Termasuk file vektor (AI, SVG, PDF) & PNG transparan",
+            "Gratis konsultasi konsep via WhatsApp"
+          ],
+          gradient: "linear-gradient(135deg, #312e81 0%, #1e1b4b 55%, #09090b 100%)",
+          iconType: "pen"
+        },
+        {
+          id: "prod-2",
+          name: "Koleksi Kemeja Linen Minimalis — Edisi Kurasi",
+          category: "Produk Unggulan",
+          tags: ["Produk Unggulan", "Terlaris"],
+          price: 275000,
+          shortDesc: "Kemeja berbahan katun linen premium yang sejuk, jahitan rapi, dan potongan modern cocok untuk acara kasual maupun semi-formal.",
+          fullDesc: "Diproduksi dalam jumlah terbatas menggunakan kain katun linen pilihan yang menyerap keringat dengan tekstur lembut. Tersedia ukuran S, M, L, dan XL dengan pilihan warna netral elegan.",
+          specs: [
+            "Bahan: 100% Natural Cotton Linen Premium",
+            "Tersedia ukuran S, M, L, XL (Tanyakan stok via WA)",
+            "Garansi tukar ukuran jika tidak sesuai"
+          ],
+          gradient: "linear-gradient(135deg, #78350f 0%, #451a03 55%, #09090b 100%)",
+          iconType: "bag"
+        },
+        {
+          id: "prod-3",
+          name: "Website Portofolio & Toko Online Siap Pakai",
+          category: "Jasa / Custom",
+          tags: ["Jasa / Custom", "Produk Unggulan"],
+          price: 1250000,
+          shortDesc: "Jasa pembuatan website cepat, modern, responsif di HP/laptop, dan terintegrasi langsung ke pemesanan WhatsApp.",
+          fullDesc: "Solusi website profesional untuk profil bisnis, katalog produk, maupun portofolio pribadi. Sudah termasuk optimasi kecepatan, desain responsif semua perangkat, serta panduan pengelolaan mandiri.",
+          specs: [
+            "Desain eksklusif menyesuaikan warna brand Anda",
+            "Integrasi tombol order WhatsApp & media sosial",
+            "Bantuan deploy online hingga website siap diakses"
+          ],
+          gradient: "linear-gradient(135deg, #065f46 0%, #064e3b 55%, #09090b 100%)",
+          iconType: "code"
+        },
+        {
+          id: "prod-4",
+          name: "Kopi Arabika Specialty Single Origin (250g)",
+          category: "Terlaris",
+          tags: ["Terlaris"],
+          price: 115000,
+          shortDesc: "Biji kopi pilihan hasil sangrai segar (fresh roast) dengan aroma floral, cokelat hitam, dan tingkat keasaman seimbang.",
+          fullDesc: "Dipetik dari dataran tinggi pilihan dan disangrai dalam batch kecil untuk menjaga kesegaran rasa. Dapat dipesan dalam bentuk biji utuh (whole bean) maupun giling sesuai alat seduh Anda.",
+          specs: [
+            "Berat bersih: 250 gram (Kemasan valve kedap udara)",
+            "Opsi gilingan: Whole Bean, V60, Tubruk, atau Espresso",
+            "Disangrai maksimal 3 hari sebelum pengiriman"
+          ],
+          gradient: "linear-gradient(135deg, #7c2d12 0%, #431407 55%, #09090b 100%)",
+          iconType: "spark"
+        },
+        {
+          id: "prod-5",
+          name: "Hardcover Sketchbook & Jurnal Kulit Custom",
+          category: "Produk Unggulan",
+          tags: ["Produk Unggulan"],
+          price: 145000,
+          shortDesc: "Buku catatan sampul kulit sintetis tekstur halus dengan kertas tebal 120gsm anti tembus tinta, bisa emboss nama.",
+          fullDesc: "Cocok untuk mencatat ide harian, sketsa desain, maupun hadiah personal. Dilengkapi tali pembatas halaman, karet pengunci, dan kantong penyimpanan di bagian sampul belakang.",
+          specs: [
+            "Ukuran A5 (14.8 x 21 cm) — Isi 160 halaman",
+            "Gratis cetak emboss inisial/nama pada sampul",
+            "Kertas ramah mata warna ivory 120gsm"
+          ],
+          gradient: "linear-gradient(135deg, #581c87 0%, #3b0764 55%, #09090b 100%)",
+          iconType: "book"
+        },
+        {
+          id: "prod-6",
+          name: "Ilustrasi Digital & Desain Kemasan Produk",
+          category: "Jasa / Custom",
+          tags: ["Jasa / Custom"],
+          price: 450000,
+          shortDesc: "Karya ilustrasi orisinal dan tata letak kemasan (label, box, pouch) agar produk Anda tampil menonjol di pasaran.",
+          fullDesc: "Meningkatkan daya tarik produk Anda dengan desain kemasan yang informatif dan estetis. Disiapkan sesuai ukuran die-cut percetakan Anda dengan profil warna CMYK siap cetak.",
+          specs: [
+            "File siap cetak (PDF/AI CMYK 300 DPI)",
+            "Termasuk mockup 3D kemasan untuk promosi",
+            "Estimasi pengerjaan 3–4 hari kerja"
+          ],
+          gradient: "linear-gradient(135deg, #1e3a8a 0%, #172554 55%, #09090b 100%)",
+          iconType: "layers"
+        }
+      ]
+    };
+
+    // ========================================================================
+    // STATE APLIKASI & HELPER FUNGSI
+    // ========================================================================
+    const STORAGE_KEY = "personal_store_portfolio_config_v1";
+    let activeConfig = loadSavedConfig();
+    let currentCategory = "Semua";
+    let toastTimer = null;
+
+    /**
+     * Memuat konfigurasi tersimpan dari localStorage jika user pernah mengedit via Live Customizer.
+     */
+    function loadSavedConfig() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return structuredClone(STORE_CONFIG);
+        const parsed = JSON.parse(raw);
+        return {
+          ...structuredClone(STORE_CONFIG),
+          ...parsed,
+          products: STORE_CONFIG.products
+        };
+      } catch (err) {
+        return structuredClone(STORE_CONFIG);
+      }
+    }
+
+    /**
+     * Menyimpan perubahan sementara dari Live Customizer ke localStorage.
+     */
+    function persistConfig() {
+      try {
+        const dataToSave = {
+          ownerName: activeConfig.ownerName,
+          storeName: activeConfig.storeName,
+          city: activeConfig.city,
+          whatsappNumber: activeConfig.whatsappNumber,
+          aboutBio: activeConfig.aboutBio
+        };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(dataToSave));
+      } catch (err) {
+        // Abaikan jika mode private browsing membatasi localStorage
+      }
+    }
+
+    /**
+     * Memformat angka ke dalam mata uang Rupiah (contoh: Rp 650.000).
+     */
+    function formatRupiah(amount) {
+      return "Rp " + Number(amount || 0).toLocaleString("id-ID");
+    }
+
+    /**
+     * Mengambil 2 huruf inisial dari nama pemilik untuk avatar monogram.
+     */
+    function getInitials(name) {
+      const clean = (name || "NK").trim();
+      const parts = clean.split(/\s+/);
+      if (parts.length === 1) return parts[0].substring(0, 2).toUpperCase();
+      return (parts[0][0] + parts[1][0]).toUpperCase();
+    }
+
+    /**
+     * Membersihkan nomor WhatsApp agar hanya berisi angka dengan awalan 62.
+     */
+    function sanitizePhone(phone) {
+      let digits = String(phone || "").replace(/\D/g, "");
+      if (digits.startsWith("0")) {
+        digits = "62" + digits.slice(1);
+      }
+      return digits || "6281234567890";
+    }
+
+    /**
+     * Membuat tautan WhatsApp (wa.me) dengan pesan otomatis yang rapi.
+     */
+    function buildWhatsAppUrl(customMessage) {
+      const phone = sanitizePhone(activeConfig.whatsappNumber);
+      const text = encodeURIComponent(customMessage);
+      return `https://wa.me/${phone}?text=${text}`;
+    }
+
+    /**
+     * Mengembalikan ikon SVG estetis berdasarkan jenis produk (tanpa gambar eksternal).
+     */
+    function getProductSvgIcon(type) {
+      const icons = {
+        pen: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>`,
+        bag: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>`,
+        code: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>`,
+        spark: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>`,
+        book: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>`,
+        layers: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>`
+      };
+      return icons[type] || icons.spark;
+    }
+
+    /**
+     * Menampilkan pesan toast singkat di pojok kanan bawah.
+     */
+    function showToast(message) {
+      const toastEl = document.getElementById("toastBox");
+      if (!toastEl) return;
+      if (toastTimer) clearTimeout(toastTimer);
+      toastEl.textContent = message;
+      toastEl.classList.add("show");
+      toastTimer = setTimeout(() => {
+        toastEl.classList.remove("show");
+      }, 3000);
+    }
+
+    // ========================================================================
+    // RENDER IDENTITAS TOKO & KATALOG PRODUK
+    // ========================================================================
+    function renderStoreIdentity() {
+      const owner = activeConfig.ownerName || "Nama Kamu";
+      const store = activeConfig.storeName || `Karya & Toko ${owner}`;
+      const city = activeConfig.city || "Indonesia";
+      const bio = activeConfig.aboutBio || "";
+
+      // Update Title Halaman
+      document.title = `${store} — Official Store & Portfolio`;
+
+      // Update Navbar
+      document.getElementById("navAvatar").textContent = getInitials(owner);
+      document.getElementById("navStoreName").textContent = store;
+      document.getElementById("navOwnerName").textContent = `Oleh ${owner}`;
+
+      // Update Hero
+      document.getElementById("heroOwnerName").textContent = owner;
+      document.getElementById("heroDescription").textContent = activeConfig.heroDescription;
+
+      // Update About & Contact
+      document.getElementById("aboutOwnerName").textContent = owner;
+      document.getElementById("aboutCity").textContent = city;
+      document.getElementById("aboutBio").textContent = bio;
+      document.getElementById("contactStoreName").textContent = store;
+
+      // Update Footer
+      const year = new Date().getFullYear();
+      document.getElementById("footerCopyright").textContent =
+        `© ${year} ${owner} — ${store}. Hak Cipta Dilindungi.`;
+
+      // Update seluruh tautan WhatsApp umum
+      const generalGreeting = `Halo ${owner}, saya tertarik dengan produk/jasa di ${store}. Boleh tanya-tanya?`;
+      const generalWaUrl = buildWhatsAppUrl(generalGreeting);
+
+      document.getElementById("navWaBtn").href = generalWaUrl;
+      document.getElementById("heroWaBtn").href = generalWaUrl;
+      document.getElementById("aboutWaBtn").href = generalWaUrl;
+      document.getElementById("contactWaBtn").href = generalWaUrl;
+      document.getElementById("socialWhatsapp").href = generalWaUrl;
+
+      // Update tautan sosial media lain
+      if (activeConfig.socials) {
+        document.getElementById("socialInstagram").href = activeConfig.socials.instagram || "https://instagram.com/";
+        document.getElementById("socialTiktok").href = activeConfig.socials.tiktok || "https://tiktok.com/";
+      }
+    }
+
+    /**
+     * Merender kartu produk pada katalog berdasarkan kategori yang sedang dipilih.
+     */
+    function renderCatalog() {
+      const grid = document.getElementById("catalogGrid");
+      if (!grid) return;
+
+      const filteredProducts = activeConfig.products.filter((item) => {
+        if (currentCategory === "Semua") return true;
+        return item.category === currentCategory || (Array.isArray(item.tags) && item.tags.includes(currentCategory));
+      });
+
+      grid.innerHTML = filteredProducts
+        .map((product) => {
+          const formattedPrice = formatRupiah(product.price);
+          const orderMessage = `Halo ${activeConfig.ownerName}, saya ingin memesan dari ${activeConfig.storeName}:\n\n• Produk/Jasa: ${product.name}\n• Harga: ${formattedPrice}\n\nApakah masih tersedia?`;
+          const waOrderLink = buildWhatsAppUrl(orderMessage);
+
+          return `
+            <article class="product-card">
+              <div class="product-visual" style="background: ${product.gradient};">
+                <div class="product-visual-pattern"></div>
+                <span class="product-badge">${product.category}</span>
+                <div class="product-icon-wrap" aria-hidden="true">
+                  ${getProductSvgIcon(product.iconType)}
+                </div>
+              </div>
+
+              <div class="product-body">
+                <h3 class="product-title">${product.name}</h3>
+                <p class="product-desc">${product.shortDesc}</p>
+
+                <div class="product-price-row">
+                  <span class="price-label">Mulai dari</span>
+                  <span class="product-price">${formattedPrice}</span>
+                </div>
+
+                <div class="product-actions">
+                  <button type="button" class="btn-detail" data-product-id="${product.id}">
+                    Detail
+                  </button>
+                  <a href="${waOrderLink}" target="_blank" rel="noopener noreferrer" class="btn-order-wa">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/>
+                    </svg>
+                    <span>Pesan via WA</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+          `;
+        })
+        .join("");
+
+      // Pasang event listener untuk tombol Detail pada setiap kartu
+      grid.querySelectorAll(".btn-detail").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-product-id");
+          openProductDetailModal(id);
+        });
+      });
+    }
+
+    // ========================================================================
+    // MODAL DETAIL PRODUK
+    // ========================================================================
+    function openProductDetailModal(productId) {
+      const product = activeConfig.products.find((p) => p.id === productId);
+      if (!product) return;
+
+      const formattedPrice = formatRupiah(product.price);
+      const orderMessage = `Halo ${activeConfig.ownerName}, saya tertarik memesan produk/layanan berikut:\n\n• Nama: ${product.name}\n• Kategori: ${product.category}\n• Harga: ${formattedPrice}\n\nMohon info detail pemesanannya ya.`;
+
+      document.getElementById("detailCategory").textContent = product.category;
+      document.getElementById("detailModalTitle").textContent = product.name;
+      document.getElementById("detailVisual").style.background = product.gradient;
+      document.getElementById("detailIconWrap").innerHTML = getProductSvgIcon(product.iconType);
+      document.getElementById("detailFullDesc").textContent = product.fullDesc;
+      document.getElementById("detailPrice").textContent = formattedPrice;
+      document.getElementById("detailOrderWaBtn").href = buildWhatsAppUrl(orderMessage);
+
+      const specsList = document.getElementById("detailSpecsList");
+      specsList.innerHTML = (product.specs || [])
+        .map(
+          (spec) => `
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>${spec}</span>
+            </li>
+          `
+        )
+        .join("");
+
+      document.getElementById("detailModal").classList.add("open");
+    }
+
+    // ========================================================================
+    // LIVE CUSTOMIZER MODAL ('ATUR NAMA & TOKO')
+    // ========================================================================
+    function syncCustomizerInputs() {
+      document.getElementById("inputOwnerName").value = activeConfig.ownerName;
+      document.getElementById("inputStoreName").value = activeConfig.storeName;
+      document.getElementById("inputCity").value = activeConfig.city;
+      document.getElementById("inputWhatsapp").value = activeConfig.whatsappNumber;
+      document.getElementById("inputBio").value = activeConfig.aboutBio;
+    }
+
+    function handleLiveCustomizerInput() {
+      const newOwner = document.getElementById("inputOwnerName").value.trim() || "Nama Kamu";
+      const newStore = document.getElementById("inputStoreName").value.trim() || `Karya & Toko ${newOwner}`;
+      const newCity = document.getElementById("inputCity").value.trim() || "Indonesia";
+      const newWa = document.getElementById("inputWhatsapp").value.trim() || "6281234567890";
+      const newBio = document.getElementById("inputBio").value.trim() || STORE_CONFIG.aboutBio;
+
+      activeConfig.ownerName = newOwner;
+      activeConfig.storeName = newStore;
+      activeConfig.city = newCity;
+      activeConfig.whatsappNumber = newWa;
+      activeConfig.aboutBio = newBio;
+
+      persistConfig();
+      renderStoreIdentity();
+      renderCatalog();
+    }
+
+    /**
+     * Menyalin potongan kode STORE_CONFIG yang sudah terisi identitas pengguna ke clipboard.
+     */
+    function copyGeneratedConfig() {
+      const snippet = `const STORE_CONFIG = {
+  ownerName: ${JSON.stringify(activeConfig.ownerName)},
+  storeName: ${JSON.stringify(activeConfig.storeName)},
+  city: ${JSON.stringify(activeConfig.city)},
+  whatsappNumber: ${JSON.stringify(sanitizePhone(activeConfig.whatsappNumber))},
+  aboutBio: ${JSON.stringify(activeConfig.aboutBio)},`;
+
+      const tempArea = document.createElement("textarea");
+      tempArea.value = snippet;
+      tempArea.style.position = "fixed";
+      tempArea.style.opacity = "0";
+      document.body.appendChild(tempArea);
+      tempArea.select();
+      try {
+        document.execCommand("copy");
+        showToast("Konfigurasi disalin! Tempel ke STORE_CONFIG di index.html.");
+      } catch (err) {
+        showToast("Gagal menyalin otomatis. Silakan salin manual.");
+      }
+      document.body.removeChild(tempArea);
+    }
+
+    // ========================================================================
+    // INISIALISASI EVENT LISTENER SAAT HALAMAN SIAP
+    // ========================================================================
+    document.addEventListener("DOMContentLoaded", () => {
+      // Render awal
+      renderStoreIdentity();
+      renderCatalog();
+
+      // Filter kategori katalog
+      document.querySelectorAll(".filter-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".filter-btn").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentCategory = btn.getAttribute("data-category") || "Semua";
+          renderCatalog();
+        });
+      });
+
+      // Toggle menu mobile
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const mobileDrawer = document.getElementById("mobileDrawer");
+      mobileMenuBtn.addEventListener("click", () => {
+        const isOpen = mobileDrawer.classList.toggle("open");
+        mobileMenuBtn.setAttribute("aria-expanded", String(isOpen));
+      });
+
+      document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileDrawer.classList.remove("open");
+          mobileMenuBtn.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      // Kontrol Modal Live Customizer
+      const customizerModal = document.getElementById("customizerModal");
+      document.getElementById("openCustomizerBtn").addEventListener("click", () => {
+        syncCustomizerInputs();
+        customizerModal.classList.add("open");
+      });
+
+      document.getElementById("closeCustomizerBtn").addEventListener("click", () => {
+        customizerModal.classList.remove("open");
+      });
+
+      customizerModal.addEventListener("click", (e) => {
+        if (e.target === customizerModal) customizerModal.classList.remove("open");
+      });
+
+      // Input real-time di Live Customizer
+      ["inputOwnerName", "inputStoreName", "inputCity", "inputWhatsapp", "inputBio"].forEach((id) => {
+        document.getElementById(id).addEventListener("input", handleLiveCustomizerInput);
+      });
+
+      document.getElementById("copyConfigBtn").addEventListener("click", copyGeneratedConfig);
+
+      document.getElementById("resetConfigBtn").addEventListener("click", () => {
+        try {
+          localStorage.removeItem(STORAGE_KEY);
+        } catch (err) {}
+        activeConfig = structuredClone(STORE_CONFIG);
+        syncCustomizerInputs();
+        renderStoreIdentity();
+        renderCatalog();
+        showToast("Identitas toko dikembalikan ke pengaturan awal.");
+      });
+
+      // Kontrol Modal Detail Produk
+      const detailModal = document.getElementById("detailModal");
+      document.getElementById("closeDetailBtn").addEventListener("click", () => {
+        detailModal.classList.remove("open");
+      });
+
+      detailModal.addEventListener("click", (e) => {
+        if (e.target === detailModal) detailModal.classList.remove("open");
+      });
+
+      // Tutup modal dengan tombol Escape
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          customizerModal.classList.remove("open");
+          detailModal.classList.remove("open");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
